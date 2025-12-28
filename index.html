@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         /* ============================================
            CSS VARIABLES
@@ -156,11 +159,30 @@
         }
 
         .language-indicator {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .lang-btn {
             font-size: 14px;
             color: var(--gray-medium);
-            padding: 8px 15px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid var(--gray-light);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
             background: var(--gray-light);
-            border-radius: 20px;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-red);
+            color: var(--white);
+            border-color: var(--primary-red);
         }
 
         .cta-button {
@@ -394,8 +416,17 @@
         }
 
         .course-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-red), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(227, 30, 36, 0.3);
         }
 
         .course-card h3 {
@@ -570,8 +601,16 @@
         }
 
         .feature-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 20px;
+            background: var(--yellow-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary-red);
         }
 
         .feature-card h3 {
@@ -954,6 +993,34 @@
         }
 
         /* ============================================
+           RTL SUPPORT (Arabic)
+           ============================================ */
+        html[dir="rtl"] {
+            direction: rtl;
+        }
+
+        html[dir="rtl"] body {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .header-container,
+        html[dir="rtl"] .nav-links {
+            flex-direction: row-reverse;
+        }
+
+        html[dir="rtl"] .hero-content,
+        html[dir="rtl"] .section-header,
+        html[dir="rtl"] .course-card,
+        html[dir="rtl"] .testimonial-card {
+            text-align: center;
+        }
+
+        html[dir="rtl"] .feature-card,
+        html[dir="rtl"] .course-details {
+            text-align: right;
+        }
+
+        /* ============================================
            RESPONSIVE STYLES
            ============================================ */
         @media (max-width: 1024px) {
@@ -1164,14 +1231,17 @@
 
             <nav id="nav">
                 <ul class="nav-links">
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#courses">Courses</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#why-us">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#hero" data-translate="nav-home">Home</a></li>
+                    <li><a href="#courses" data-translate="nav-courses">Courses</a></li>
+                    <li><a href="#pricing" data-translate="nav-pricing">Pricing</a></li>
+                    <li><a href="#why-us" data-translate="nav-about">About Us</a></li>
+                    <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
                 </ul>
-                <span class="language-indicator">🌐 EN | AR | عربي</span>
-                <a href="https://wa.me/971505075280?text=Hi!%20I'm%20interested%20in%20getting%20my%20driving%20license%20from%20Prime%20Motor%20Driving%20School.%20Please%20share%20more%20details." class="cta-button">Book Free Consultation</a>
+                <div class="language-indicator">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ar">عربي</button>
+                </div>
+                <a href="https://wa.me/971505075280?text=Hi!%20I'm%20interested%20in%20getting%20my%20driving%20license%20from%20Prime%20Motor%20Driving%20School.%20Please%20share%20more%20details." class="cta-button" data-translate="cta-header">Book Free Consultation</a>
             </nav>
         </div>
     </header>
@@ -1183,15 +1253,15 @@
         <!-- HERO SECTION -->
         <section id="hero">
             <div class="container hero-content">
-                <div class="hero-badge">⭐ 4.9 Rated on Google • 850+ Reviews</div>
-                <h1>Your Journey to Driving Starts Here</h1>
-                <p class="subheadline">Sharjah's Most Trusted Driving School — Get Licensed in 60 Days</p>
+                <div class="hero-badge" data-translate="hero-badge">⭐ 4.9 Rated on Google • 850+ Reviews</div>
+                <h1 data-translate="hero-title">Your Journey to Driving Starts Here</h1>
+                <p class="subheadline" data-translate="hero-subtitle">Sharjah's Most Trusted Driving School — Get Licensed in 60 Days</p>
 
                 <div class="trust-badges">
-                    <div class="trust-badge-item">✓ Sharjah Police Approved</div>
-                    <div class="trust-badge-item">✓ 95% First-Attempt Pass Rate</div>
-                    <div class="trust-badge-item">✓ 20+ Expert Instructors</div>
-                    <div class="trust-badge-item">✓ Multilingual Training</div>
+                    <div class="trust-badge-item" data-translate="badge-1">✓ Sharjah Police Approved</div>
+                    <div class="trust-badge-item" data-translate="badge-2">✓ 95% First-Attempt Pass Rate</div>
+                    <div class="trust-badge-item" data-translate="badge-3">✓ 20+ Expert Instructors</div>
+                    <div class="trust-badge-item" data-translate="badge-4">✓ Multilingual Training</div>
                 </div>
 
                 <div class="hero-cta-group">
@@ -1199,9 +1269,9 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
-                        Start Learning Today
+                        <span data-translate="cta-primary">Start Learning Today</span>
                     </a>
-                    <a href="#pricing" class="btn-secondary">View Course Pricing</a>
+                    <a href="#pricing" class="btn-secondary" data-translate="cta-secondary">View Course Pricing</a>
                 </div>
             </div>
         </section>
@@ -1241,7 +1311,7 @@
                 <div class="courses-grid">
                     <!-- Course 1: Beginner -->
                     <div class="course-card">
-                        <div class="course-icon">🚗</div>
+                        <div class="course-icon"><i class="fas fa-car"></i></div>
                         <h3>Beginner Course</h3>
                         <p class="for-text">For: First-time drivers with no experience</p>
                         <ul class="course-details">
@@ -1260,7 +1330,7 @@
                     <!-- Course 2: License Conversion -->
                     <div class="course-card">
                         <div class="course-badge">Fast Track</div>
-                        <div class="course-icon">🔄</div>
+                        <div class="course-icon"><i class="fas fa-sync-alt"></i></div>
                         <h3>License Conversion</h3>
                         <p class="for-text">For: International license holders</p>
                         <ul class="course-details">
@@ -1278,7 +1348,7 @@
 
                     <!-- Course 3: UAE Nationals -->
                     <div class="course-card">
-                        <div class="course-icon">🇦🇪</div>
+                        <div class="course-icon"><i class="fas fa-flag"></i></div>
                         <h3>UAE Nationals</h3>
                         <p class="for-text">For: Emirati citizens</p>
                         <ul class="course-details">
@@ -1296,7 +1366,7 @@
 
                     <!-- Course 4: Motorcycle -->
                     <div class="course-card">
-                        <div class="course-icon">🏍️</div>
+                        <div class="course-icon"><i class="fas fa-motorcycle"></i></div>
                         <h3>Motorcycle License</h3>
                         <p class="for-text">For: Two-wheeler enthusiasts</p>
                         <ul class="course-details">
@@ -1574,37 +1644,37 @@
 
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">🏆</div>
+                        <div class="feature-icon"><i class="fas fa-trophy"></i></div>
                         <h3>Highest Pass Rate</h3>
                         <p>95% of our students pass on their first attempt. Our proven teaching methods deliver results.</p>
                     </div>
 
                     <div class="feature-card">
-                        <div class="feature-icon">👨‍🏫</div>
+                        <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                         <h3>Expert Instructors</h3>
                         <p>20+ Sharjah Police certified trainers with years of experience. Patient, professional, multilingual.</p>
                     </div>
 
                     <div class="feature-card">
-                        <div class="feature-icon">🌐</div>
+                        <div class="feature-icon"><i class="fas fa-globe"></i></div>
                         <h3>Multilingual Training</h3>
                         <p>Learn in your preferred language: Arabic, English, Hindi, Urdu, Punjabi, or Pashto.</p>
                     </div>
 
                     <div class="feature-card">
-                        <div class="feature-icon">🚗</div>
+                        <div class="feature-icon"><i class="fas fa-car-side"></i></div>
                         <h3>Modern Fleet</h3>
                         <p>Train on new Nissan vehicles equipped with dual controls for your safety.</p>
                     </div>
 
                     <div class="feature-card">
-                        <div class="feature-icon">📅</div>
+                        <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
                         <h3>Flexible Scheduling</h3>
                         <p>Morning, afternoon, evening & weekend slots. We work around your schedule.</p>
                     </div>
 
                     <div class="feature-card">
-                        <div class="feature-icon">📍</div>
+                        <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <h3>Prime Location</h3>
                         <p>Conveniently located in Al Nasserya, behind Zulekha Hospital. Easy to reach from anywhere in Sharjah.</p>
                     </div>
@@ -1857,6 +1927,88 @@
          JAVASCRIPT
          ============================================ -->
     <script>
+        // ========================================
+        // LANGUAGE SWITCHING
+        // ========================================
+        const translations = {
+            en: {
+                'cta-header': 'Book Free Consultation',
+                'nav-home': 'Home',
+                'nav-courses': 'Courses',
+                'nav-pricing': 'Pricing',
+                'nav-about': 'About Us',
+                'nav-contact': 'Contact',
+                'hero-badge': '⭐ 4.9 Rated on Google • 850+ Reviews',
+                'hero-title': 'Your Journey to Driving Starts Here',
+                'hero-subtitle': 'Sharjah\'s Most Trusted Driving School — Get Licensed in 60 Days',
+                'badge-1': '✓ Sharjah Police Approved',
+                'badge-2': '✓ 95% First-Attempt Pass Rate',
+                'badge-3': '✓ 20+ Expert Instructors',
+                'badge-4': '✓ Multilingual Training',
+                'cta-primary': 'Start Learning Today',
+                'cta-secondary': 'View Course Pricing'
+            },
+            ar: {
+                'cta-header': 'احجز استشارة مجانية',
+                'nav-home': 'الرئيسية',
+                'nav-courses': 'الدورات',
+                'nav-pricing': 'الأسعار',
+                'nav-about': 'من نحن',
+                'nav-contact': 'اتصل بنا',
+                'hero-badge': '⭐ تقييم 4.9 على جوجل • أكثر من 850 تقييم',
+                'hero-title': 'رحلتك إلى القيادة تبدأ هنا',
+                'hero-subtitle': 'مدرسة القيادة الأكثر ثقة في الشارقة - احصل على رخصتك في 60 يومًا',
+                'badge-1': '✓ معتمد من شرطة الشارقة',
+                'badge-2': '✓ نسبة نجاح 95٪ من المحاولة الأولى',
+                'badge-3': '✓ أكثر من 20 مدرب خبير',
+                'badge-4': '✓ تدريب متعدد اللغات',
+                'cta-primary': 'ابدأ التعلم اليوم',
+                'cta-secondary': 'عرض أسعار الدورات'
+            }
+        };
+
+        // Get current language from localStorage or default to English
+        let currentLang = localStorage.getItem('language') || 'en';
+
+        // Set initial language
+        document.documentElement.lang = currentLang;
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+        // Function to switch language
+        function switchLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Translate all elements with data-translate attribute
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Add event listeners to language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+
+        // Apply initial language on page load
+        switchLanguage(currentLang);
+
         // ========================================
         // MOBILE MENU TOGGLE
         // ========================================
